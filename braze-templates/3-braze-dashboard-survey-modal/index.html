@@ -18,7 +18,7 @@
   -->
   <style>
     /* fonts */
-    @font-face {
+    /* @font-face {
       font-family: 'Sailec Bold';
       src: url('https://appboy-images.com/appboy/communication/assets/font_assets/files/5f2d540126e78f1669f53229/original.otf?1596806145') format('truetype');
     }
@@ -26,13 +26,13 @@
     @font-face {
       font-family: 'Sailec Normal';
       src: url('https://appboy-images.com/appboy/communication/assets/font_assets/files/5f2d5401ff0a7415251998d6/original.otf?1596806145') format('truetype');
-    }
+    } */
 
     :root {
-      --bold-font-stack: 'Sailec Bold', helvetica, arial, sans-serif;
-      --normal-font-stack: 'Sailec Normal', helvetica, arial, sans-serif;
-      --accent-color: #0099AE;
-      --text-color: #101B24;
+      --bold-font-stack: 'Avenir Next', helvetica, arial, sans-serif;
+      --normal-font-stack: 'Avenir Next', helvetica, arial, sans-serif;
+      --accent-color: #74C947;
+      --text-color: #191919;
     }
 
     /* Box sizing rules */
@@ -114,7 +114,7 @@
       left: 0;
       height: 100vh;
       width: 100vw;
-      background-color: rgba(46, 60, 71, 0.7);
+      background-color: rgba(25, 25, 25, 0.5);
       z-index: 99999;
       overflow: scroll;
     }
@@ -125,54 +125,66 @@
       flex-basis: 450px;
       margin: auto;
       border-radius: 3px;
-      padding: 64px 32px 32px;
-      background-color: rgb(255, 255, 255);
+      padding: 40px;
+      background-color: #ffffff;
+      box-shadow: 0px 3px 15px 2px rgba(0, 0, 0, 0.0900136);
+      border-radius: 30px;
     }
 
     .modal__cross {
       position: absolute;
-      top: 16px;
-      right: 16px;
-      padding: 0;
+      top: 30px;
+      right: 30px;
+      padding: 9px;
       border: none;
-      background-color: transparent;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+      background: #F5F5F5;
+      mix-blend-mode: normal;
+      border-radius: 30px;
     }
-
-    .modal__cross,
     .modal__cross svg {
-      height: 22px;
-      width: 22px;
+      height: 12px;
+      width: 12px;
     }
 
     .modal__title {
-      margin-bottom: 12px;
       font-family: var(--bold-font-stack);
-      font-size: 24px;
+      font-size: 22px;
       line-height: 30px;
+      font-style: normal;
+      font-weight: 600;
+      margin-right: 40px;
     }
 
     .modal__text {
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       font-family: var(--normal-font-stack);
+      font-weight: 400;
       font-size: 14px;
-      line-height: 21px;
+      line-height: 22px;
+      margin-right: 40px;
     }
 
     .modal__survey-list {
-      margin-bottom: 32px;
+      margin-bottom: 20px;
     }
 
     .modal__survey-list-item {
       position: relative;
       display: flex;
       align-items: center;
-      border: 1px solid #A8B3B8;
+      border-bottom: 1px solid #F5F5F5;
       cursor: pointer;
     }
 
-    .modal__survey-list-item+.modal__survey-list-item {
-      margin-top: 8px;
+    .modal__survey-list-item:last-of-type {
+      border-bottom: none;
     }
 
     .modal__input {
@@ -197,22 +209,29 @@
       display: flex;
       align-items: center;
       width: 100%;
-      padding: 8px;
-      font-family: var(--normal-font-stack);
+      padding: 20px 0;
+      font-family: var(--bold-font-stack);
       font-size: 14px;
       line-height: 21px;
+      font-weight: 600;
       cursor: pointer;
       user-select: none;
+      padding-right: 32px;
+
+    }
+    .modal__label:active {
+      opacity: 70%;
     }
 
     .modal__label:before {
       content: "";
       display: block;
-      height: 32px;
-      width: 32px;
-      border: 1px solid #A8B3B8;
-      border-radius: 3px;
-      margin-right: 20px;
+      height: 22px;
+      width: 22px;
+      border: 1px solid #CCCFCF;
+      border-radius: 50px;
+      position: absolute;
+      right: 0;
     }
 
     .modal__tick {
@@ -220,7 +239,7 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      left: 18px;
+      right: 4.5px;
       width: 13px;
       height: 10px;
       pointer-events: none;
@@ -233,8 +252,8 @@
     }
 
     .modal__button {
-      width: 140px;
-      height: 40px;
+      width: 100%;
+      height: 44px;
       background-color: var(--accent-color);
       color: rgb(255, 255, 255);
       font-family: var(--bold-font-stack);
@@ -243,11 +262,24 @@
       text-align: center;
       cursor: pointer;
       border: none;
+      padding: 12px 24px 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100px;
+    }
+    .modal__button:active {
+      opacity: 70%;
     }
 
     .modal__button span {
       position: relative;
-      top: -2px;
+      font-family: var(--bold-font-stack);
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 22px;
     }
 
     .hide {
@@ -266,20 +298,20 @@
       display: inline-block;
     }
 
-    /*iPads*/
-    @media (max-width: 900px) {
+
+    @media (max-width: 420px) {
       .modal {
-        height: auto;
-        max-width: 330px;
-        flex-basis: 330px;
-        margin: auto;
-        padding: 56px 16px 24px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        margin-bottom: 0;
+        padding: 30px;
+      }
+      .modal__button-wrap {
+        margin-left: -10px;
+        margin-right: -10px;
       }
 
-      .modal__button-wrap {
-        display: flex;
-        justify-content: center;
-      }
+
     }
   </style>
 </head>
@@ -288,23 +320,20 @@
   <div class="overlay">
     <div class="modal" id="js-form">
       <button class="modal__cross" onclick="appboyBridge.logClick();appboyBridge.closeMessage()" type="button">
-        <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3.14128 2.60452L19.5705 19.3955" stroke="#5E6C75" stroke-width="3.8" />
-          <path d="M19.3001 2.34807L3.41199 19.6519" stroke="#5E6C75" stroke-width="3.8" />
+        <svg width="12px" height="12px" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2071 2.20711C11.5976 1.81658 11.5976 1.18342 11.2071 0.792893C10.8166 0.402369 10.1834 0.402369 9.79289 0.792893L6 4.58579L2.20711 0.792893C1.81658 0.402369 1.18342 0.402369 0.792894 0.792893C0.402369 1.18342 0.402369 1.81658 0.792894 2.20711L4.58579 6L0.792894 9.79289C0.402369 10.1834 0.402369 10.8166 0.792894 11.2071C1.18342 11.5976 1.81658 11.5976 2.20711 11.2071L6 7.41421L9.79289 11.2071C10.1834 11.5976 10.8166 11.5976 11.2071 11.2071C11.5976 10.8166 11.5976 10.1834 11.2071 9.79289L7.41421 6L11.2071 2.20711Z" fill="#191919"/>
         </svg>
       </button>
-      <h1 class="modal__title">Survey Headline</h1>
-      <p class="modal__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-        ut labore et dolore magna aliqua.</p>
+      <h1 class="modal__title">How did you hear about us?</h1>
+      <p class="modal__text">Please select one</p>
       <ul class="modal__survey-list">
         <li class="modal__survey-list-item">
           <input class="modal__input" id="option-one" data-custom-attribute-name="your-attribute"
             data-custom-attribute-value="your-value" type="checkbox">
           <!-- Add option label text below -->
           <label class="modal__label" for="option-one">Lorem ipsum dolor sit amet</label>
-          <svg class="modal__tick" width="14" height="10" viewBox="0 0 14 10" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 4.22412L5.1709 8.41309L12.4143 1" stroke="white" stroke-width="2" />
+          <svg class="modal__tick" width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.66398 5.64615L4.80687 8.28335L10.0813 1.99756" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </li>
         <li class="modal__survey-list-item">
@@ -312,9 +341,8 @@
             data-custom-attribute-value="your-value" type="checkbox">
           <!-- Add option label text below -->
           <label class="modal__label" for="option-two">Consectetur adipiscing elit</label>
-          <svg class="modal__tick" width="14" height="10" viewBox="0 0 14 10" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 4.22412L5.1709 8.41309L12.4143 1" stroke="white" stroke-width="2" />
+          <svg class="modal__tick" width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.66398 5.64615L4.80687 8.28335L10.0813 1.99756" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </li>
         <li class="modal__survey-list-item">
@@ -322,9 +350,8 @@
             data-custom-attribute-value="your-value" type="checkbox">
           <!-- Add option label text below -->
           <label class="modal__label" for="option-three">Sed do eiusmod tempor incididunt</label>
-          <svg class="modal__tick" width="14" height="10" viewBox="0 0 14 10" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 4.22412L5.1709 8.41309L12.4143 1" stroke="white" stroke-width="2" />
+          <svg class="modal__tick" width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.66398 5.64615L4.80687 8.28335L10.0813 1.99756" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </li>
         <span class="modal__error-message" id="js-error-message">Please check a box to submit.</span>
