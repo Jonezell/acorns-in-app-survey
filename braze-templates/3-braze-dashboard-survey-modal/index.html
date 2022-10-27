@@ -1,16 +1,4 @@
 <!doctype html>
-
-<!-- TODO LIST
-
-  - overflow scrolling for long list
-  - UAT design spacing
-  - Error state
-
- -->
-
-
-
-
 <html lang="en">
 
 <head>
@@ -185,6 +173,10 @@
       margin-right: 40px;
       padding: 0 40px;
     }
+    .modal__text.error {
+      color: #FA2A2B;
+      font-family: var(--bold-font-stack);
+    }
     .modal__survey-list {
       padding: 0px 40px 20px 40px;
       flex-grow: 1;
@@ -289,16 +281,6 @@
     .hide {
       display: none;
     }
-    .modal__error-message {
-      display: none;
-      margin-top: 10px;
-      color: rgb(255, 58, 93);
-      font-family: var(--normal-font-stack);
-      font-size: 12px;
-    }
-    .modal__error-message.show {
-      display: inline-block;
-    }
 
 
     @media (max-width: 500px) {
@@ -340,7 +322,7 @@
         </svg>
       </button>
       <h1 class="modal__title">How did you hear about us?</h1>
-      <p class="modal__text">Please select one</p>
+      <p class="modal__text" id="js-error-message">Please select one</p>
       <ul class="modal__survey-list">
         <li class="modal__survey-list-item">
           <input class="modal__input" id="option-1" data-custom-attribute-name="your-attribute"
@@ -431,8 +413,6 @@
             <path d="M1.66398 5.64615L4.80687 8.28335L10.0813 1.99756" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </li>
-
-        <span class="modal__error-message" id="js-error-message">Please check a box to submit.</span>
       </ul>
       <div class="modal__button-wrap">
         <button class="modal__button" id="js-submit-button" type="button">
@@ -452,7 +432,7 @@
         if (choices.filter(function (input) {
           return input.checked;
         }).length === 0) {
-          errorMessage.classList.add('show');
+          errorMessage.classList.add('error');
           return;
         }
 
