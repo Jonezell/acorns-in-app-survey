@@ -122,7 +122,6 @@
     select {
       font: inherit;
     }
-
     .overlay {
       display: flex;
       position: fixed;
@@ -134,23 +133,23 @@
       z-index: 99999;
       overflow: scroll;
     }
-
     .modal {
       position: relative;
-      max-width: 450px;
-      flex-basis: 450px;
+      max-width: 420px;
+      flex-basis: 420px;
       margin: auto;
       border-radius: 3px;
-      padding: 40px;
       background-color: #ffffff;
       box-shadow: 0px 3px 15px 2px rgba(0, 0, 0, 0.0900136);
       border-radius: 30px;
+      display: flex;
+      flex-direction: column;
+      max-height: 476px;
     }
-
     .modal__cross {
       position: absolute;
-      top: 30px;
-      right: 30px;
+      top: 40px;
+      right: 40px;
       padding: 9px;
       border: none;
       cursor: pointer;
@@ -168,7 +167,6 @@
       height: 12px;
       width: 12px;
     }
-
     .modal__title {
       font-family: var(--bold-font-stack);
       font-size: 22px;
@@ -176,8 +174,8 @@
       font-style: normal;
       font-weight: 600;
       margin-right: 40px;
+      padding: 40px 40px 0 40px;
     }
-
     .modal__text {
       margin-bottom: 20px;
       font-family: var(--normal-font-stack);
@@ -185,12 +183,13 @@
       font-size: 14px;
       line-height: 22px;
       margin-right: 40px;
+      padding: 0 40px;
     }
-
     .modal__survey-list {
-      margin-bottom: 20px;
+      padding: 0px 40px 20px 40px;
+      flex-grow: 1;
+      overflow-y: scroll;
     }
-
     .modal__survey-list-item {
       position: relative;
       display: flex;
@@ -198,11 +197,9 @@
       border-bottom: 1px solid #F5F5F5;
       cursor: pointer;
     }
-
     .modal__survey-list-item:last-of-type {
       border-bottom: none;
     }
-
     .modal__input {
       opacity: 0;
       position: absolute;
@@ -211,16 +208,13 @@
       height: 0;
       width: 0;
     }
-
     .modal__input:checked+.modal__label:before {
       background-color: var(--accent-color);
       border-color: var(--accent-color);
     }
-
     .modal__input:checked+.modal__label+.modal__tick {
       display: block;
     }
-
     .modal__label {
       display: flex;
       align-items: center;
@@ -233,12 +227,10 @@
       cursor: pointer;
       user-select: none;
       padding-right: 32px;
-
     }
     .modal__label:active {
       opacity: 70%;
     }
-
     .modal__label:before {
       content: "";
       display: block;
@@ -249,7 +241,6 @@
       position: absolute;
       right: 0;
     }
-
     .modal__tick {
       display: none;
       position: absolute;
@@ -260,13 +251,12 @@
       height: 10px;
       pointer-events: none;
     }
-
     .modal__button-wrap {
       display: flex;
       justify-content: flex-end;
       border: none;
+      padding: 0px 40px 40px 40px;
     }
-
     .modal__button {
       width: 100%;
       height: 44px;
@@ -288,7 +278,6 @@
     .modal__button:active {
       opacity: 70%;
     }
-
     .modal__button span {
       position: relative;
       font-family: var(--bold-font-stack);
@@ -297,11 +286,9 @@
       font-size: 14px;
       line-height: 22px;
     }
-
     .hide {
       display: none;
     }
-
     .modal__error-message {
       display: none;
       margin-top: 10px;
@@ -309,26 +296,38 @@
       font-family: var(--normal-font-stack);
       font-size: 12px;
     }
-
     .modal__error-message.show {
       display: inline-block;
     }
 
 
-    @media (max-width: 420px) {
+    @media (max-width: 500px) {
       .modal {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         margin-bottom: 0;
-        padding: 30px;
+        max-height: calc(100% - 80px);
+        max-width: 100%;
+        flex-basis: 100%;
       }
       .modal__button-wrap {
-        margin-left: -10px;
-        margin-right: -10px;
+        padding: 0px 20px 30px 20px;
       }
-
-
+      .modal__title {
+        padding: 30px 30px 0 30px;
+      }
+      .modal__text {
+        padding: 0 30px;
+      }
+      .modal__survey-list {
+        padding: 0px 30px 20px 30px;
+      }
+      .modal__cross {
+        top: 30px;
+        right: 30px;
+      }
     }
+
   </style>
 </head>
 
@@ -344,32 +343,95 @@
       <p class="modal__text">Please select one</p>
       <ul class="modal__survey-list">
         <li class="modal__survey-list-item">
-          <input class="modal__input" id="option-one" data-custom-attribute-name="your-attribute"
-            data-custom-attribute-value="your-value" type="checkbox">
+          <input class="modal__input" id="option-1" data-custom-attribute-name="your-attribute"
+            data-custom-attribute-value="your-value" name="singleSelect" type="radio">
           <!-- Add option label text below -->
-          <label class="modal__label" for="option-one">Lorem ipsum dolor sit amet</label>
+          <label class="modal__label" for="option-1">Friends & Family Recommendation</label>
           <svg class="modal__tick" width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1.66398 5.64615L4.80687 8.28335L10.0813 1.99756" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </li>
+
         <li class="modal__survey-list-item">
-          <input class="modal__input" id="option-two" data-custom-attribute-name="your-attribute"
-            data-custom-attribute-value="your-value" type="checkbox">
+          <input class="modal__input" id="option-2" data-custom-attribute-name="your-attribute"
+            data-custom-attribute-value="your-value" name="singleSelect" type="radio">
           <!-- Add option label text below -->
-          <label class="modal__label" for="option-two">Consectetur adipiscing elit</label>
+          <label class="modal__label" for="option-2">Celebrity or Influencer Recommendation</label>
           <svg class="modal__tick" width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1.66398 5.64615L4.80687 8.28335L10.0813 1.99756" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </li>
+
         <li class="modal__survey-list-item">
-          <input class="modal__input" id="option-three" data-custom-attribute-name="your-attribute"
-            data-custom-attribute-value="your-value" type="checkbox">
+          <input class="modal__input" id="option-3" data-custom-attribute-name="your-attribute"
+            data-custom-attribute-value="your-value" name="singleSelect" type="radio">
           <!-- Add option label text below -->
-          <label class="modal__label" for="option-three">Sed do eiusmod tempor incididunt</label>
+          <label class="modal__label" for="option-3">Ad on Facebook or Instagram</label>
           <svg class="modal__tick" width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1.66398 5.64615L4.80687 8.28335L10.0813 1.99756" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </li>
+
+        <li class="modal__survey-list-item">
+          <input class="modal__input" id="option-4" data-custom-attribute-name="your-attribute"
+            data-custom-attribute-value="your-value" name="singleSelect" type="radio">
+          <!-- Add option label text below -->
+          <label class="modal__label" for="option-4">Ad on TikTok</label>
+          <svg class="modal__tick" width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.66398 5.64615L4.80687 8.28335L10.0813 1.99756" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </li>
+
+        <li class="modal__survey-list-item">
+          <input class="modal__input" id="option-5" data-custom-attribute-name="your-attribute"
+            data-custom-attribute-value="your-value" name="singleSelect" type="radio">
+          <!-- Add option label text below -->
+          <label class="modal__label" for="option-5">Ad on YouTube</label>
+          <svg class="modal__tick" width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.66398 5.64615L4.80687 8.28335L10.0813 1.99756" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </li>
+
+        <li class="modal__survey-list-item">
+          <input class="modal__input" id="option-6" data-custom-attribute-name="your-attribute"
+            data-custom-attribute-value="your-value" name="singleSelect" type="radio">
+          <!-- Add option label text below -->
+          <label class="modal__label" for="option-6">Ad on TV</label>
+          <svg class="modal__tick" width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.66398 5.64615L4.80687 8.28335L10.0813 1.99756" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </li>
+
+        <li class="modal__survey-list-item">
+          <input class="modal__input" id="option-7" data-custom-attribute-name="your-attribute"
+            data-custom-attribute-value="your-value" name="singleSelect" type="radio">
+          <!-- Add option label text below -->
+          <label class="modal__label" for="option-7">Ad on Podcast or Radio</label>
+          <svg class="modal__tick" width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.66398 5.64615L4.80687 8.28335L10.0813 1.99756" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </li>
+
+        <li class="modal__survey-list-item">
+          <input class="modal__input" id="option-8" data-custom-attribute-name="your-attribute"
+            data-custom-attribute-value="your-value" name="singleSelect" type="radio">
+          <!-- Add option label text below -->
+          <label class="modal__label" for="option-8">Search</label>
+          <svg class="modal__tick" width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.66398 5.64615L4.80687 8.28335L10.0813 1.99756" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </li>
+
+        <li class="modal__survey-list-item">
+          <input class="modal__input" id="option-9" data-custom-attribute-name="your-attribute"
+            data-custom-attribute-value="your-value" name="singleSelect" type="radio">
+          <!-- Add option label text below -->
+          <label class="modal__label" for="option-9">Other</label>
+          <svg class="modal__tick" width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.66398 5.64615L4.80687 8.28335L10.0813 1.99756" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </li>
+
         <span class="modal__error-message" id="js-error-message">Please check a box to submit.</span>
       </ul>
       <div class="modal__button-wrap">
